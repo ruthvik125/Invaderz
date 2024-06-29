@@ -1,6 +1,3 @@
-const config = {
-    width:800,height:800,parent:gameContainer,scene:[GameSc],backgroundColor:"black",physics:{default:"arcade"}
-};
 
 let gameRoom;
 let deadPlayerCh;
@@ -32,7 +29,7 @@ realtime.connection.once("connected", () => {
   game = new Phaser.Game(config);
 });
 
-class GameSc extends Phaser.Scene
+class GameScene extends Phaser.Scene
 {
     constructor(){}
     //assets can be loaded using the preload func into the prog, once initialised
@@ -352,3 +349,7 @@ class GameSc extends Phaser.Scene
     }
 
 }
+
+const config = {
+  width:800,height:800,parent:"gameContainer",scene:[GameScene],backgroundColor:"#FFFFF",physics:{default:"arcade"}
+};

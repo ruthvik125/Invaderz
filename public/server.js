@@ -55,8 +55,8 @@ Now, we need three pages:
 
 */
 
-
-app.get('/',(req,res)=>{
+VIEW_DIR = 'C:/Users/Admin/python_projects/Invaderz'
+app.get('/',(request,response)=>{
 
     response.header("Access-Control-Allow-Origin", "*");
     response.header(
@@ -67,24 +67,25 @@ app.get('/',(req,res)=>{
 
 //It is a dual player game, so if more than two, players are given an alt page to checkout nd wait
     if (++peopleAccessingTheWebsite > MIN_PLAYERS_TO_START_GAME) {
-        response.sendFile(__dirname + "/views/gameRoomFull.html");
+        response.sendFile(VIEW_DIR + "/views/gameRoomFull.html");
       } else {
-        response.sendFile(__dirname + "/views/intro.html");
+        response.sendFile(VIEW_DIR + "/views/intro.html");
       }
 
-    res.sendFile(__dirname + "/views/intro.html");
 });
 
 app.get('/gameplay',(req,res)=>{
-    res.sendFile(__dirname + "/views/index.html");
+    res.sendFile(VIEW_DIR + "/views/index.html");
 });
 
 
-app.get('/result',(req,res)=>{
-    res.sendFile(__dirname + "/views/result.html");
-});
-
-
+app.get("/winner", (request, response) => {
+    response.sendFile(VIEW_DIR + "/views/winner.html");
+  });
+  
+  app.get("/gameover", (request, response) => {
+    response.sendFile(VIEW_DIR + "/views/gameover.html");
+  });
 
 const realtime = new Ably.Realtime(ABLY_API_KEY);
 
